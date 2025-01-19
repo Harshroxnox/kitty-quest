@@ -1,11 +1,18 @@
-#include <iostream>
+#include <raylib.h>
 
-using namespace std;
+int main(){    
+    InitWindow(600, 400, "Kitty Quest");
 
-int main(){
+    while(!WindowShouldClose()){
+        BeginDrawing();
 
-cout<< "Hello World!";
+        ClearBackground(SKYBLUE);
 
-return 0;
+        EndDrawing();
+    }
 
+
+
+    CloseWindow();
+    return 0;
 }
