@@ -1,12 +1,16 @@
 #include <raylib.h>
 
 int main(){    
-    InitWindow(600, 400, "Kitty Quest");
+    InitWindow(1920, 1080, "Kitty Quest");
+
+    // For fullscreen uncomment
+    // ToggleFullscreen();
+    Color BgColor = {189, 150, 146, 255};
 
     while(!WindowShouldClose()){
         BeginDrawing();
 
-        ClearBackground(SKYBLUE);
+        ClearBackground(BgColor);
 
         EndDrawing();
     }
