@@ -1,15 +1,6 @@
 #include <raylib.h>
 #include "sprite.hpp"
-
-typedef struct SpritePro {
-    float Scale;
-    Texture2D Texture;
-    Rectangle SrcRect;
-    Rectangle DestRect;
-    Vector2 Origin = {0,0};
-    float Rotation = 0.0f;
-    Color Tint = WHITE;
-}SpritePro;
+#include "spriteAnim.hpp"
 
 int main(){
     // Initialize Window and Configurations    
@@ -19,29 +10,21 @@ int main(){
     // Colors
     Color BgColor = {189, 150, 146, 255};
 
-    // Load Textures
-    Texture2D PlayerRight = LoadTexture("assets/walking-anim.png");
-    SetTextureFilter(PlayerRight, TEXTURE_FILTER_TRILINEAR);
-
-    // Player
-    SpritePro player = (SpritePro){
-        .Scale = 0.5,
-        .Texture = PlayerRight,
-        .SrcRect = (Rectangle){
+    Sprite ground("assets/ground.png", (Vector2){0,0}, 1.0f, 0.0f, WHITE);
+    SpriteAnim player(
+        "assets/walking-anim.png", 
+        (Rectangle){
             .x = 0,
             .y = 0,
             .width = 218,
             .height = 296,
         },
-        .DestRect = (Rectangle){
-            .x = 300,
-            .y = 500,
-            .width = player.SrcRect.width*player.Scale,
-            .height = player.SrcRect.height*player.Scale,
-        }
-    };
-
-    //Sprite ground("assets/ground.png", (Vector2){0,0}, (float)1.0);
+        (Vector2){600, 500},
+        0.5,
+        (Vector2){0,0},
+        0.0f,
+        WHITE
+    );
 
     // Game Loop
     while(!WindowShouldClose()){
@@ -53,16 +36,16 @@ int main(){
         // Drawing
         BeginDrawing();
         ClearBackground(BgColor);
-        //ground.Draw();
-        DrawTexturePro(player.Texture, player.SrcRect, player.DestRect, 
-        player.Origin, player.Rotation, player.Tint);
+        ground.Draw();
+        player.Draw();
 
         DrawFPS(10, 10);
         EndDrawing();
     }
 
-    UnloadTexture(PlayerRight);
-
+    ground.Unload();
+    player.Unload();
+ 
     CloseWindow();
     return 0;
 }
