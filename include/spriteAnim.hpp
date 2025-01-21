@@ -6,6 +6,7 @@ class SpriteAnim {
     public:
         SpriteAnim(const char* filename, Rectangle SrcRect, Vector2 Position, float Scale, Vector2 Origin,
         float Rotation, Color Tint);
+        void ChangePos(Vector2 Position);
         void Unload();
         void Draw();
         void SetScale(float Scale);

@@ -34,3 +34,8 @@ void SpriteAnim::SetScale(float Scale){
         DestRect.height = SrcRect.height*Scale;
     }
 }
+
+void SpriteAnim::ChangePos(Vector2 Position){
+    DestRect.x += Position.x;
+    DestRect.y += Position.y;
+}
