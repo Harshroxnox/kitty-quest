@@ -1,18 +1,21 @@
 #include <raylib.h>
 #include "sprite.hpp"
 #include "spritePlayer.hpp"
+#include <entt/entity/registry.hpp>
 
 int main(){
     // Initialize Window and Configurations    
     InitWindow(1920, 1080, "Kitty Quest");
     SetTargetFPS(60);
+    
+    entt::registry reg;
 
     // Colors
     Color BgColor = {189, 150, 146, 255};
 
     Sprite ground("assets/ground.png", (Vector2){0,0}, 1.0f, 0.0f, WHITE);
     SpritePlayer player(
-        "assets/walking-anim.png", 
+        "assets/walking-anim.png",
         (Rectangle){
             .x = 0,
             .y = 0,
