@@ -15,7 +15,7 @@ LIB = lib
 LIBRARIES = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 TARGET = main
 # All the src files with .cpp extension inside cpp folder
-SRC_FILES = $(wildcard src/*.cpp)
+SRC_FILES = $(wildcard src/*.cpp) $(wildcard src/**/*.cpp)
 # Since initially obj folder will be empty. Make sure obj folder exists 
 OBJ_FILES = $(patsubst src/%.cpp, obj/%.o, $(SRC_FILES))
 
@@ -30,6 +30,7 @@ $(TARGET): $(OBJ_FILES)
 # For compilation we don't need any libraries only header files that 
 # is given with -Iinclude
 obj/%.o: src/%.cpp
+	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $< -o $@
 
 # Cleaning for removing all object files and main (exe)

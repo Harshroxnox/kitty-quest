@@ -2,6 +2,8 @@
 #include <raylib.h>
 #include <entt/entity/registry.hpp>
 #include "components.hpp"
+#include "sceneManager.hpp"
+#include <iostream>
 
 Game& Game::Get(){
     static Game instance;
@@ -24,9 +26,32 @@ void Game::InitInternal(){
 }
 
 void Game::RunInternal(){
+    /*
+    SceneManager::RemoveScene("asd");
+    SceneManager::GetCurrentScene();
+    SceneManager::RemoveScene("Scene1");
+
+    if(SceneManager::AddScene("Scene2")){
+        std::cout << "Added scene2";
+    }else{
+        std::cout << "eerr";
+    }
+
+    if(SceneManager::RemoveScene("Scene1")){
+        std::cout << "removed scene1";
+    }else{
+        std::cout << "eerr";
+    }
+
+    std::cout << SceneManager::RemoveScene("Scene1");
+
+    SceneManager::GetScene("Scene2");
+    */
+
+
     //Setting up the registry 
     entt::registry registry;
-
+    
     entt::entity GroundEntity = registry.create();
     registry.emplace<SpriteEx>(
         GroundEntity, 

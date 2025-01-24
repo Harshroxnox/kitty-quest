@@ -47,13 +47,13 @@ bool SceneManager::RemoveSceneInternal(const std::string& SceneName){
 
     // Scene doesn't exist
     if(it == Scenes.end()){
-        std::cerr << "Scene doesn't exist";
+        std::cerr << "Scene doesn't exist" << std::endl;
         return false;
     }
 
     // Deny removal of last scene
     if(Scenes.size() == 1){
-        std::cerr << "Last Scene! Removal Denied";
+        std::cerr << "Last Scene! Removal Denied" << std::endl;
         return false;
     }
 
@@ -71,7 +71,7 @@ bool SceneManager::RemoveSceneInternal(const std::string& SceneName){
 bool SceneManager::SwitchSceneInternal(const std::string& SceneName){
     // check if scene exists
     if(Scenes.find(SceneName) == Scenes.end()){
-        std::cerr << "Scene doesn't exist";
+        std::cerr << "Scene doesn't exist" << std::endl;
         return false;
     }
 
