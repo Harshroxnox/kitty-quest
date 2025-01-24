@@ -6,28 +6,28 @@
 class SceneManager {
     public:
         // Singleton stuff
-        static SceneManager& Get();
         SceneManager(const SceneManager&) = delete;
 
-        // Main API 
+        // Main API
+        static SceneManager& Get();
         static Scene& GetCurrentScene();
-        static void AddScene(std::string SceneName);
-        static Scene& GetScene(std::string SceneName);
-        static void RemoveScene(std::string SceneName);
-        static void SwitchScene(std::string SceneName);
+        static bool AddScene(const std::string& SceneName);
+        static Scene& GetScene(const std::string& SceneName);
+        static bool RemoveScene(const std::string& SceneName);
+        static bool SwitchScene(const std::string& SceneName);
         
     private:
         // The internal non-static functions 
         Scene& GetCurrentSceneInternal();
-        void AddSceneInternal(std::string SceneName);
-        Scene& GetSceneInternal(std::string SceneName);
-        void RemoveSceneInternal(std::string SceneName);
-        void SwitchSceneInternal(std::string SceneName);
+        bool AddSceneInternal(const std::string& SceneName);
+        Scene& GetSceneInternal(const std::string& SceneName);
+        bool RemoveSceneInternal(const std::string& SceneName);
+        bool SwitchSceneInternal(const std::string& SceneName);
 
         // Private variables
         Scene* CurrentScene = nullptr;
         std::unordered_map<std::string, Scene> Scenes;
         
         // Singleton stuff
-        SceneManager() {}
+        SceneManager();
 };
