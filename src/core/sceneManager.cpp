@@ -15,6 +15,15 @@ SceneManager& SceneManager::Get(){
     return instance;
 }
 
+void SceneManager::RunInternal(){
+    if(!CurrentScene){
+        throw std::runtime_error("CurrentScene is nullptr");
+    }
+    // Don't Worry! It will not load again if Scene is already loaded   
+    CurrentScene->LoadScene();
+    CurrentScene->RunSystems();
+}
+
 Scene& SceneManager::GetCurrentSceneInternal(){
     if(!CurrentScene){
         throw std::runtime_error("CurrentScene is nullptr");
@@ -70,17 +79,25 @@ bool SceneManager::RemoveSceneInternal(const std::string& SceneName){
 
 bool SceneManager::SwitchSceneInternal(const std::string& SceneName){
     // check if scene exists
-    if(Scenes.find(SceneName) == Scenes.end()){
+    auto it = Scenes.find(SceneName);
+    if(it == Scenes.end()){
         std::cerr << "Scene doesn't exist" << std::endl;
         return false;
     }
-
-    // Will complete this after making scene class    
+  
     // unload the currScene(if applicable)
-    // change currScene ref
-    // load SceneName
+    if(CurrentScene != nullptr){
+        CurrentScene->UnloadScene();
+    }
 
+    // update currentScene and load
+    CurrentScene = &it->second;
+    CurrentScene->LoadScene();
     return true;
+}
+
+void SceneManager::Run(){
+    Get().RunInternal();
 }
 
 Scene& SceneManager::GetCurrentScene(){

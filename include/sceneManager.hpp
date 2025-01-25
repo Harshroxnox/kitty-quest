@@ -9,15 +9,20 @@ class SceneManager {
         SceneManager(const SceneManager&) = delete;
 
         // Main API
+        // Run always runs the current scene
+        static void Run();
         static SceneManager& Get();
         static Scene& GetCurrentScene();
         static bool AddScene(const std::string& SceneName);
         static Scene& GetScene(const std::string& SceneName);
         static bool RemoveScene(const std::string& SceneName);
+        // NOTE: SwitchScene only handles the loading and unloading you still have to 
+        // run the scene using Run()
         static bool SwitchScene(const std::string& SceneName);
         
     private:
         // The internal non-static functions 
+        void RunInternal();
         Scene& GetCurrentSceneInternal();
         bool AddSceneInternal(const std::string& SceneName);
         Scene& GetSceneInternal(const std::string& SceneName);

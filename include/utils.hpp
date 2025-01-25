@@ -12,6 +12,16 @@ void LoadTextures(entt::registry& registry){
 }
 
 template<typename ComponentType>
+void UnloadTextures(entt::registry& registry){
+    auto view = registry.view<ComponentType>();
+    for(auto entity: view){
+        auto &comp = registry.get<ComponentType>(entity);
+        UnloadTexture(comp.SpriteTexture);
+        comp.SpriteTexture = {0};
+    }
+}
+
+template<typename ComponentType>
 void LoadFonts(entt::registry& registry){
     auto view = registry.view<ComponentType>();
     for(auto entity: view){
@@ -21,11 +31,15 @@ void LoadFonts(entt::registry& registry){
 }
 
 template<typename ComponentType>
-void LoadSounds(entt::registry& registry){
+void UnloadFonts(entt::registry& registry){
     auto view = registry.view<ComponentType>();
     for(auto entity: view){
         auto &comp = registry.get<ComponentType>(entity);
-        comp.Audio = LoadSound(comp.Filepath);
+        UnloadFont(comp.TextFont);
+        comp.TextFont = {0};
     }
 }
 
+void LoadSounds(entt::registry& registry);
+
+void UnloadSounds(entt::registry& registry);
