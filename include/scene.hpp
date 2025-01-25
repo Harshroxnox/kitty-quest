@@ -8,12 +8,14 @@
 class Scene {
     public:
         bool IsLoaded();
+        // Adding texture,font,sound Entity after scene is loaded leads to undefined behaviour
         Entity AddEntity();
         bool RemoveEntity(Entity entity);
         bool HasEntity(Entity entity);
-        bool AddSystem(std::string SystemName, std::function<void(entt::registry&)> system);
+        // NOTE: The order in which you add systems is the order in which they get executed
+        bool AddSystem(std::string SystemName, std::function<void(entt::registry&)> SystemFunc);
         bool RemoveSystem(std::string SystemName);
-        bool HasSystem();
+        bool HasSystem(std::string SystemName);
 
     private:
         // This checks if the scene is already loaded before loading 
