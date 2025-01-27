@@ -3,6 +3,12 @@
 #include <string>
 #include <unordered_map>
 
+/* The SceneManager:-
+Is responsible for running, loading, unloading, switching scenes 
+It stores all scenes in an unordered map
+It is also responsible for adding, removing and keeping track of current scene
+*/
+
 class SceneManager {
     public:
         // Singleton stuff

@@ -5,6 +5,12 @@
 #include <string>
 #include <utility>
 
+/* The Scene:-
+It is mainly responsible for adding, removing entities and adding, removing systems
+NOTE: The order in which you add systems is the order in which they get executed
+It uses entt registry for storing entities and a vector for storing systems 
+*/
+
 class Scene {
     public:
         bool IsLoaded();
