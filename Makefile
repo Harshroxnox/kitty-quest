@@ -1,3 +1,10 @@
+# Debug build (with assertions & logs)
+# make debug
+
+# Release build 
+# make clean
+# make release
+
 # NOTES:
 # When writing recipies use space indentation
 # INCLUDE -> include folder containing all the header files
@@ -14,6 +21,15 @@ INCLUDE = include
 LIB = lib
 LIBRARIES = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 TARGET = main
+# Debug and Release configurations
+DEBUGFLAGS = -g -DDEBUG
+RELEASEFLAGS = -O2 -DNDEBUG
+# Build Debug
+debug: CXXFLAGS += $(DEBUGFLAGS)
+debug: $(TARGET)
+# Build Release 
+release: CXXFLAGS += $(RELEASEFLAGS)
+release: $(TARGET)
 # All the src files with .cpp extension inside cpp folder
 SRC_FILES = $(wildcard src/*.cpp) $(wildcard src/**/*.cpp)
 # Since initially obj folder will be empty. Make sure obj folder exists 

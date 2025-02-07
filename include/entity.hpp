@@ -9,8 +9,8 @@ It is basically a light wrapper around entt entity
 
 class Entity {
     public:
-        Entity(entt::entity EntityID, Scene& MyScene)
-            :EntityID(EntityID), MyScene(MyScene) {}
+        Entity(entt::entity EntityID, Scene& _Scene)
+            :EntityID(EntityID), MyScene(_Scene) {}
         
         template<typename T, typename... Args>
         T& AddComponent(Args&&... args){

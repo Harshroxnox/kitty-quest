@@ -3,6 +3,7 @@
 #include <entt/entity/registry.hpp>
 #include "components.hpp"
 #include "sceneManager.hpp"
+#include "debug.hpp"
 #include <iostream>
 
 Game& Game::Get(){
@@ -32,6 +33,10 @@ void Game::RunInternal(){
     Scene& CurrScene = SceneManager::GetCurrentScene();
 
     // Do stuff with current scene add entities, add components to entities, add systems
+
+    // Testing logging and debugging
+    log("This is a debug test");
+    assert(1>2 && "This is an assert");
 
     // Colors
     Color BgColor = {189, 150, 146, 255};

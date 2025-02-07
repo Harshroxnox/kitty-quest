@@ -1,4 +1,5 @@
 #include "scene.hpp"
+#include "entity.hpp"
 #include <raylib.h>
 #include "components.hpp"
 #include "utils.hpp"
